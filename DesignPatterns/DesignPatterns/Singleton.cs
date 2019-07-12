@@ -9,6 +9,7 @@ namespace DesignPatterns
     public sealed class Singleton
     {
         private static int _counter;
+        private static readonly object obj = new object();
 
         private static Singleton _instance = null;
         public static Singleton Instance
@@ -17,7 +18,13 @@ namespace DesignPatterns
             {
                 if (_instance == null)
                 {
-                    _instance = new Singleton();
+                    lock (obj)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new Singleton();
+                        }
+                    }
                 }
                 return _instance;
             }

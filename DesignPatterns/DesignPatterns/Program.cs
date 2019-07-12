@@ -10,11 +10,23 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            Singleton singleton1 = Singleton.Instance;
-            singleton1.PrintDetails("Message 1");
-            Singleton singleton2 = Singleton.Instance;
-            singleton1.PrintDetails("Message 2");
+            Parallel.Invoke(
+                () => InstantiateStudentSingleton(),
+                () => InstantiateEmployeeSingleton()
+            );
             Console.ReadLine();
+        }
+
+        private static void InstantiateStudentSingleton()
+        {
+            Singleton singleton = Singleton.Instance;
+            singleton.PrintDetails("Student Message");
+        }
+
+        private static void InstantiateEmployeeSingleton()
+        {
+            Singleton singleton = Singleton.Instance;
+            singleton.PrintDetails("Employee Message");
         }
     }
 }
