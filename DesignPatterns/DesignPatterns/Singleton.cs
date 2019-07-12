@@ -9,24 +9,13 @@ namespace DesignPatterns
     public sealed class Singleton
     {
         private static int _counter;
-        private static readonly object obj = new object();
 
-        private static Singleton _instance = null;
+        private static readonly Lazy<Singleton> _instance = new Lazy<Singleton>(()=>new Singleton());
         public static Singleton Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    lock (obj)
-                    {
-                        if (_instance == null)
-                        {
-                            _instance = new Singleton();
-                        }
-                    }
-                }
-                return _instance;
+                return _instance.Value;
             }
         }
 
