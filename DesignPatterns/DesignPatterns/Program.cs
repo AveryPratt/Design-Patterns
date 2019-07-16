@@ -10,11 +10,21 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+
+        }
+
+        static void RunSingleton()
+        {
             Singleton singleton1 = Singleton.Instance;
             singleton1.PrintDetails("Message 1");
             Singleton singleton2 = Singleton.Instance;
             singleton1.PrintDetails("Message 2");
             Console.ReadLine();
+        }
+
+        static void RunFactory()
+        {
+
         }
     }
 }
